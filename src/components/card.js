@@ -1,4 +1,3 @@
-const Card = (article) => {
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -17,9 +16,30 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+import axios from 'axios';
+const Card = (article) => {
+const cardDiv = document.createElement('div');
+const headlineDiv = document.createElement('div');
+const authorDiv = document.createElement('div');
+const imgDiv = document.createElement('div');
+const authorImg = document.createElement('img');
+const authorName = document.createElement('span');
+cardDiv.appendChild(headlineDiv);
+cardDiv.appendChild(authorDiv);
+authorDiv.appendChild(imgDiv);
+imgDiv.appendChild(authorImg);
+authorDiv.appendChild(authorName);
+cardDiv.classList.add('card');
+headlineDiv.classList.add('headline');
+authorDiv.classList.add('author');
+imgDiv.classList.add('img-container');
+headlineDiv.textContent = article.headline;
+authorImg.src = article.authorPhoto;
+authorName.textContent = article.authorName;
+console.log(cardDiv);
+return cardDiv;
 }
 
-const cardAppender = (selector) => {
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.
@@ -28,6 +48,22 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+
+const cardAppender = (selector) => {
+  const location = document.querySelector(selector);
+  axios.get(`http://localhost:5000/api/articles`)
+    .then(resp => {
+      // console.log(resp.data.articles);
+      const articlesObj = resp.data.articles;
+      const articlesArray = Object.values(articlesObj);
+      articlesArray.forEach(el => el.forEach(el => {
+        const newCard = Card(el);
+        // console.log(newCard);
+        location.appendChild(newCard);
+      }));
+    }).catch(error => {
+      console.log(error);
+    }).finally(() => console.log('it work? hm'))
 }
 
 export { Card, cardAppender }
