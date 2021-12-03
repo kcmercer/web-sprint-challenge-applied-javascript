@@ -10,4 +10,3 @@ tabsAppender('.tabs-container')
 cardAppender('.cards-container')
 
 console.log('Lambda Times loaded!')
-console.log('working!')
