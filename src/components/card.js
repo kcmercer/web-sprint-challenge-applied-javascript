@@ -36,7 +36,7 @@ imgDiv.classList.add('img-container');
 headlineDiv.textContent = article.headline;
 authorImg.src = article.authorPhoto;
 authorName.textContent = article.authorName;
-console.log(cardDiv);
+// console.log(cardDiv);
 return cardDiv;
 }
 
@@ -63,7 +63,7 @@ const cardAppender = (selector) => {
       }));
     }).catch(error => {
       console.log(error);
-    }).finally(() => console.log('it work? hm'))
+    }).finally(() => console.log('card work? hm'))
 }
 
 export { Card, cardAppender }

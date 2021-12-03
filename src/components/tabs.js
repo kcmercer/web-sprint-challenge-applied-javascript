@@ -19,16 +19,24 @@ const Tabs = (topics) => {
   const topicsJS = document.createElement('div');
   const topicsBS = document.createElement('div');
   const topicsTech = document.createElement('div');
+  const topicsJquery = document.createElement('div');
+  const topicsNode = document.createElement('div');
   tabsTopics.appendChild(topicsJS);
   tabsTopics.appendChild(topicsBS);
   tabsTopics.appendChild(topicsTech);
+  tabsTopics.appendChild(topicsJquery);
+  tabsTopics.appendChild(topicsNode);
   tabsTopics.classList.add('topics');
   topicsJS.classList.add('tab');
   topicsBS.classList.add('tab');
   topicsTech.classList.add('tab');
+  topicsJquery.classList.add('tab');
+  topicsNode.classList.add('tab');
   topicsJS.textContent = topics[0];
   topicsBS.textContent = topics[1];
   topicsTech.textContent = topics[2];
+  topicsJquery.textContent = topics[3];
+  topicsNode.textContent = topics[4];
   return tabsTopics;
 }
 
@@ -40,18 +48,31 @@ const Tabs = (topics) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
 
-const tabsAppender = (selector) => {
-  const location = document.querySelector(selector);
-  axios.get(`http://localhost:5000/api/topics`)
-    .then(resp => {
-      // console.log(resp);
-      let newTabs = Tabs(resp.data.topics);
-      location.appendChild(newTabs);
-      // console.log(newTabs);
-      return newTabs;
-    }).catch(error => {
-      console.log(error);
-    }).finally(() => console.log('it work? hm'))
-};
+  // const tabsAppender = (selector) => {
+  //   const location = document.querySelector(selector);
+  //   axios.get(`http://localhost:5000/api/topics`)
+  //     .then(resp => {
+  //       // console.log(resp);
+  //       let newTabs = Tabs(resp.data.topics);
+  //       location.appendChild(newTabs);
+  //       console.log(resp.data.topics);
+  //       return newTabs;
+  //     }).catch(error => {
+  //       console.log(error);
+  //     }).finally(() => console.log('tabs work? hm'))
+
+  const tabsAppender = (selector) => {
+    const location = document.querySelector(selector);
+    axios.get(`http://localhost:5000/api/topics`)
+      .then(resp => {
+        // console.log(resp);
+        let newTabs = Tabs(resp.data.topics);
+        location.appendChild(newTabs);
+        console.log(resp.data.topics);
+        return newTabs;
+      }).catch(error => {
+        console.log(error);
+      }).finally(() => console.log('tabs work? hm'))
+    }
 
 export { Tabs, tabsAppender }
