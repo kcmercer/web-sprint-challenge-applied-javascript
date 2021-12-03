@@ -16,6 +16,7 @@
   //   </div>
   // </div>
   //
+
 import axios from 'axios';
 const Card = (article) => {
 const cardDiv = document.createElement('div');
@@ -36,6 +37,9 @@ imgDiv.classList.add('img-container');
 headlineDiv.textContent = article.headline;
 authorImg.src = article.authorPhoto;
 authorName.textContent = article.authorName;
+cardDiv.addEventListener('click', function(){
+  console.log(headlineDiv.textContent);
+})
 // console.log(cardDiv);
 return cardDiv;
 }

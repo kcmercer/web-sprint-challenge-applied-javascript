@@ -12,6 +12,7 @@
   //   <div class="tab">technology</div>
   // </div>
   //
+
   import axios from 'axios';
 
 const Tabs = (topics) => {
